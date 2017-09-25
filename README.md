@@ -8,13 +8,14 @@ This project uses:
 * Redux: App State Manager. [Go to Docs](https://github.com/reactjs/redux)
 * Redux Sagas: App side effect and business logic library. [Go to Docs](https://github.com/redux-saga/redux-saga)
 * Reselect: App data store selection library. [Go to Docs](https://github.com/reactjs/reselect)
-* Immutable: Immutable data structure. [Go to Docs](https://facebook.github.io/immutable-js/docs/#/)
+* Mori: Persistent Immutable Data Structure. [Go to Docs](http://swannodette.github.io/mori/)
 * Webpack: App bundler and development server. [Go to Docs](https://webpack.js.org/guides/)
 
 ## How to start developing
 Make sure you have Yarn installed, then run in your terminal:
 ```bash
 yarn install
+yarn run dev
 ```
 
 ## Test

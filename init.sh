@@ -20,7 +20,7 @@ echo "Install monet..."
 yarn add monet
 
 echo "Install Redux..."
-yarn add redux react-redux redux-sagas
+yarn add redux react-redux redux-saga
 
 echo "Install Jest..."
 yarn add jest enzyme jest-enzyme jest-styled-components eslint-plugin-jest --dev
@@ -42,3 +42,6 @@ yarn add npm-watch --dev
 
 echo "Install Polyfills..."
 yarn add whatwg-fetch
+
+echo "Install typings..."
+flow-typed install
