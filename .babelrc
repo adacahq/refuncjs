@@ -1,0 +1,35 @@
+{
+  "presets": [
+    "react",
+    "env",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "flow"
+  ],
+  "plugins": [
+    "transform-runtime",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "actions": "./actions",
+          "components": "./components",
+          "containers": "./containers",
+          "factories": "./factories",
+          "reducers": "./reducers",
+          "sagas": "./sagas",
+          "services": "./services",
+          "types": "./types",
+          "theme": "./theme"
+        }
+      }
+    ]
+  ]
+}

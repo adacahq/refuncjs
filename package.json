@@ -1,0 +1,70 @@
+{
+  "name": "react-view-stack",
+  "version": "1.0.0",
+  "description": "Station five react front end stack",
+  "main": "index.js",
+  "watch": {
+    "check": "src/**/*.js"
+  },
+  "scripts": {
+    "dev": "npm-watch & webpack-dev-server --env dev --watch",
+    "build": "webpack --env prod --config webpack.config.babel.js",
+    "test": "jest",
+    "check": "yarn run flow check && yarn run eslint ./src"
+  },
+  "keywords": [
+    "react",
+    "station",
+    "five"
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
+  },
+  "author": "Station Five",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-eslint": "7.2.3",
+    "babel-loader": "7.1.1",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-flow": "6.23.0",
+    "babel-preset-react": "6.24.1",
+    "babel-register": "6.26.0",
+    "enzyme": "^2.9.1",
+    "eslint": "4.4.1",
+    "eslint-config-airbnb": "15.1.0",
+    "eslint-import-resolver-babel-module": "^3.0.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.2.1",
+    "flow-bin": "0.53.1",
+    "html-webpack-plugin": "2.30.1",
+    "jest": "20.0.4",
+    "jest-enzyme": "^3.8.2",
+    "jest-styled-components": "^4.6.0",
+    "react-addons-test-utils": "^15.6.0",
+    "react-test-renderer": "15.6.1",
+    "webpack": "3.5.5",
+    "webpack-dev-server": "2.7.1"
+  },
+  "dependencies": {
+    "monet": "0.8.10",
+    "mori": "0.3.2",
+    "npm-watch": "^0.2.0",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-redux": "5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "3.7.2",
+    "redux-saga": "^0.15.6",
+    "reselect": "3.0.1",
+    "styled-components": "^2.1.2",
+    "whatwg-fetch": "^2.0.3"
+  }
+}
