@@ -1,0 +1,28 @@
+@mixin textField($fieldFontSize, $padding, $labelFontSize) {
+
+  &__label {
+    $FormLabelConfig: (
+      labelFontSize: $labelFontSize,
+      colour: $black,
+    );
+
+    @include formLabel($FormLabelConfig);
+  }
+
+  &__field {
+    $FormFieldConfig: (
+      padding: $padding,
+      fieldFontSize: $fieldFontSize,
+      colour: $black,
+    );
+
+    > input {
+      @include formField($FormFieldConfig);
+      @include formFieldBorder();
+    }
+  }
+
+  &__error {
+    @include formError($labelFontSize);
+  }
+}

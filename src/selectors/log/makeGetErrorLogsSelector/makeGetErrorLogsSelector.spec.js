@@ -1,23 +1,24 @@
 // @flow
 
-import { list, first } from 'mori';
-import LogTypes from 'types/LogTypes';
+import {
+  list,
+  first,
+} from 'mori';
 import type { Log } from 'types/Log';
-import LogFactory from 'factories/LogFactory';
+import LogTypes from 'types/LogTypes';
 import makeGetErrorLogsSelector from './makeGetErrorLogsSelector';
 
 describe('Selector makeGetErrorLogsSelector', () => {
   test('gets all error logs', () => {
-    // Arrange
-    const errorLog: Log = LogFactory({
-      msg: 'My error message',
+    const errorLog: Log = {
       type: LogTypes.ERROR,
-    });
+      msg: 'My error message',
+    };
 
-    const warningLog: Log = LogFactory({
-      msg: 'My warning message',
+    const warningLog: Log = {
       type: LogTypes.WARNING,
-    });
+      msg: 'My warning message',
+    };
 
     const state: { log: list } = {
       log: list(
@@ -25,13 +26,11 @@ describe('Selector makeGetErrorLogsSelector', () => {
         warningLog,
       ),
     };
-    const selector = makeGetErrorLogsSelector();
-    const expected = errorLog;
+    const selector: Function = makeGetErrorLogsSelector();
+    const expected: Log = errorLog;
 
-    // Act
-    const actual = first(selector(state));
+    const actual: Log = first(selector(state));
 
-    // Assert
     expect(actual).toBe(expected);
   });
 });

@@ -1,69 +1,74 @@
 // @flow
 
 import 'whatwg-fetch';
-import CONFIG from '../constants';
+import { Either } from 'monet';
+import merge from 'lodash/fp/merge';
+import { CONFIG } from 'constants';
 
-interface HTTPResponse {
-  error: string,
-  data: {},
-}
+const DEFAULT_HEADER: Object = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};
 
-function HTTPResponseFactory(response: HTTPResponse): HTTPResponse {
-  return {
-    data: response.data,
-    error: response.error,
-  };
-}
+type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export default class HTTP {
-  static BASE_URL: string = CONFIG.API_URL;
+  static BASE_URL: string = `${CONFIG.API_URL}/${CONFIG.API_VERSION}`;
 
-  static METHODS: {
-    GET: string,
-    POST: string,
-    DELETE: string,
-    PUT: string,
-  } = {
+  static METHODS: Object = {
     GET: 'GET',
     POST: 'POST',
     DELETE: 'DELETE',
     PUT: 'PUT',
   };
 
-  static request(url: string,
-    method: string,
-    token: string,
-    options: ?{}): Promise<HTTPResponse> {
-    return fetch(url, Object.assign({
-      method,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'x-access-token': token,
-      },
-    }, options))
-      .then((data: Response) => data.json())
-      .then(HTTPResponseFactory)
-      .catch(HTTPResponseFactory);
+  static request(
+    url: string,
+    method: HTTPMethod,
+    options: Object,
+  ): Promise<Either> {
+    return fetch(
+      url,
+      merge(
+        {
+          method,
+          headers: DEFAULT_HEADER,
+        },
+        options,
+      ),
+    )
+      .then((resp: Response): Either<string, any> => Either.Right(resp)
+        .flatMap(async (data: Object): Either<string, any> => {
+          const body: JSON = await data.json();
+          return data.status >= 400 ? Either.Left(body.message) : Either.Right(body);
+        })).catch(Either.left);
   }
 
-  static get(url: string, token: string): Promise<HTTPResponse> {
-    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.GET, token);
+  static get(
+    url: string,
+    options: Object = {},
+  ): Promise<Either> {
+    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.GET, options);
   }
 
-  static post(url: string, body: {}, token: string): Promise<HTTPResponse> {
-    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.POST, token, {
-      body: JSON.stringify(body),
-    });
+  static post(
+    url: string,
+    options: Object = {},
+  ): Promise<Either> {
+    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.POST, options);
   }
 
-  static put(url: string, body: {}, token: string): Promise<HTTPResponse> {
-    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.PUT, token, {
-      body: JSON.stringify(body),
-    });
+  static put(
+    url: string,
+    options: Object = {},
+  ): Promise<Either> {
+    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.PUT, options);
   }
 
-  static delete(url: string, token: string): Promise<HTTPResponse> {
-    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.DELETE, token);
+  static delete(
+    url: string,
+    options: Object = {},
+  ): Promise<Either> {
+    return HTTP.request(HTTP.BASE_URL + url, HTTP.METHODS.DELETE, options);
   }
 }
