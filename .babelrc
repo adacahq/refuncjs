@@ -1,17 +1,27 @@
 {
   "presets": [
     "react",
-    "env",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions"
+          ]
+        }
+      }
+    ],
     [
       "es2015",
       {
-        "modules": false
+        "modules": "commonjs"
       }
     ],
     "flow"
   ],
   "plugins": [
-    "transform-runtime",
+    "transform-class-properties",
+    "syntax-dynamic-import",
     [
       "module-resolver",
       {
@@ -22,12 +32,14 @@
           "actions": "./actions",
           "components": "./components",
           "containers": "./containers",
+          "constants": "./constants",
           "factories": "./factories",
           "reducers": "./reducers",
           "sagas": "./sagas",
           "services": "./services",
           "types": "./types",
-          "theme": "./theme"
+          "theme": "./theme",
+          "infrastructure": "./infrastructure"
         }
       }
     ]

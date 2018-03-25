@@ -1,10 +1,7 @@
 // @flow
 
-import {
-  combineReducers,
-} from 'redux';
 import log from './log/log';
 
-export default combineReducers({
+export default {
   log,
-});
+};

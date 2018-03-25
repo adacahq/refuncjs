@@ -1,0 +1,8 @@
+@function getValue($key, $values) {
+  @if map-has-key($values, $key) {
+    @return map-get($values, $key);
+  }
+
+  @warn "Unknown `#{$key}` variable in values hash map.";
+  @return null;
+}

@@ -1,3 +1,3 @@
 // @flow
 
-export { default } from './log';
+export { default as logSelector } from './log'; // eslint-disable-line import/prefer-default-export

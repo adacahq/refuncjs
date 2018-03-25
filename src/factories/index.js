@@ -1,2 +1,4 @@
-export { default as LogActionFactory } from './LogAction';
-export { default as LogFactory } from './LogFactory';
+// @flow
+
+/* eslint-disable import/prefer-default-export */
+export { default as FieldValidatorFactory } from './FieldValidatorFactory';

@@ -1,8 +1,6 @@
 // @flow
 
-import type { Log } from 'types/Log';
-
-export interface Action {
+export interface Action<T> {
   type: string,
-  payload: Log
+  payload?: T,
 }
